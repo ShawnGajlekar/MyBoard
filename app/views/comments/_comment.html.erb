@@ -1,0 +1,15 @@
+<div class="comment">
+<p class="comment-content"><%= comment.content %></p>
+<p><%= image_tag comment.file.url if comment.file? %></p>
+<p class="comment-posted-by"><%= comment.user.email %> <%= time_ago_in_words(comment.created_at) %></p>
+<div class="links">
+<% if user_signed_in? %>	
+	<% if comment.user_id == current_user.id %>
+		<%= link_to "Edit", edit_notice_comment_path(comment.notice, comment) %>
+		<%= link_to "Delete", notice_comment_path(comment.notice, comment), method: :delete, data: {confirm: "Are you sure"} %>
+	<% end %>
+<% end %>
+</div>	
+</div>
+
+

@@ -1,0 +1,5 @@
+<%= simple_form_for([@notice, @notice.comments.build]) do |f| %>
+<%= f.input :content , label: "Comment" %>
+<%= f.file_field :file, label: "Attachment", title: "choose file" %>
+<%= f.button :submit , :class => 'btn-custom' %>
+<% end %>

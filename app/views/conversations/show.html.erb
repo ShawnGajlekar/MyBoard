@@ -1,0 +1,19 @@
+<h1><%= @conversation.subject %></h1>
+<div class="links btn-group">
+<%= link_to "Back" , conversations_path,class: "btn btn-default" %>
+</div>
+<% @conversation.receipts_for(current_user).each do|r| %>
+	<div>
+	<div><%= r.message.sender.user_name %>:</div>
+	<p class="message-desc"><%= r.message.body %></p>
+	</div>
+<% end %>
+
+<%= form_tag conversation_messages_path(@conversation), method: :post do %>
+	<div>
+		<%= text_area_tag :body %>
+	</div>
+	<%= submit_tag %>
+<% end %>
+
+

@@ -1,0 +1,20 @@
+<div class="col-md-8 col-md-offset-2">
+<div class="message-show"
+<h2><%= @notice.title %></h2>
+<p class="message-posted-by">Posted By <%=@notice.user.email %><%= time_ago_in_words(@notice.created_at)%></p>
+<p class="message-desc"><%= @notice.description %></p>
+<h3>Comments</h3>
+<%= render @notice.comments %>
+<h3 class="reply-to-msg">Post your comment</h3>
+<%= render 'comments/form' %>
+<div class="links btn-group">
+<%=link_to "Back", root_path, class: "btn btn-default" %>
+<% if user_signed_in? %>
+	<% if @notice.user_id == current_user.id %>
+		<%= link_to "Edit" , edit_notice_path(@notice),class: "btn btn-default" %>
+		<%= link_to "Delete" , notice_path(@notice), method: :delete, data: {confirm: "Are you sure?"},class: "btn btn-default" %>
+	<% end %>
+<% end %>
+</div>
+</div>
+</div>
